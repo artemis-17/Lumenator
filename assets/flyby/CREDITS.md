@@ -1,0 +1,5 @@
+# Flyby camera assets
+
+- Planet maps are the original 2K equirectangular maps from [Solar System Scope](https://www.solarsystemscope.com/textures/), by INOVE, under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Venus uses the atmosphere map and Earth uses the day map. The maps are representative imagery.
+- `pck00011.tpc` is the [generic planetary constants kernel from NASA/JPL NAIF](https://naif.jpl.nasa.gov/pub/naif/generic_kernels/pck/pck00011.tpc).
+- Radial ring locations come from the NASA planetary ring fact sheets for [Jupiter](https://nssdc.gsfc.nasa.gov/planetary/factsheet/jupringfact.html), [Saturn](https://nssdc.gsfc.nasa.gov/planetary/factsheet/satringfact.html), [Uranus](https://nssdc.gsfc.nasa.gov/planetary/factsheet/uranringfact.html), and [Neptune](https://nssdc.gsfc.nasa.gov/planetary/factsheet/nepringfact.html), and the [NASA PDS Uranus rings table](https://pds-rings.seti.org/uranus/uranus_rings_table.html). The renderer uses representative optical depths, circular bands, and increased display exposure for faint rings.

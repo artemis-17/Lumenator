@@ -1,0 +1,481 @@
+<!-- LUMEN flyby camera -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LUMEN Flyby Camera</title>
+  <style>
+    :root { color-scheme: dark; font: 15px system-ui, sans-serif; background: #0b1018; color: #eaf2fb; }
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    main { max-width: 1240px; margin: auto; padding: 24px 26px 40px; }
+    header, .control-row, .scene-bottom, footer { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    header { margin-bottom: 18px; flex-wrap: wrap; }
+    h1 { margin: 0; font-weight: 650; font-size: clamp(1.4rem, 3vw, 2.1rem); letter-spacing: -.035em; }
+    a { color: #9cd6ed; text-underline-offset: .22em; }
+    .header-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 18px; }
+    .viewer { border: 1px solid #303b4b; border-radius: 14px; overflow: hidden; background: #111926; }
+    .scene { position: relative; background: #030509; }
+    canvas { display: block; width: 100%; aspect-ratio: 16 / 9; }
+    .hud { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: space-between;
+           padding: clamp(12px, 2vw, 24px); pointer-events: none; }
+    .scene-top { display: flex; gap: 12px; align-items: flex-start; justify-content: space-between; }
+    .readout, .stats, .scene-bottom span { padding: 8px 10px; border-radius: 7px; background: #0a1018cb;
+                                           border: 1px solid #697f972e; }
+    .readout strong { display: block; font-size: clamp(1rem, 3vw, 1.55rem); font-weight: 620; }
+    .muted, dt { color: #b0bed0; }
+    .numbers, dd, output, #offset { font: .85rem ui-monospace, Consolas, monospace; color: #eaf2fb; }
+    dl { display: grid; grid-template-columns: auto auto; column-gap: 16px; row-gap: 5px; margin: 0; }
+    dd { margin: 0; text-align: right; }
+    #offset { color: #a3e6f4; margin-top: 5px; }
+    .controls { padding: 15px 18px; }
+    .timeline { display: block; width: 100%; margin: 0 0 12px; }
+    input[type=range] { accent-color: #a6e2ef; }
+    .buttons, .lens { display: flex; align-items: center; flex-wrap: wrap; gap: 9px; }
+    button, select { font: inherit; color: inherit; background: #1c293b; border: 1px solid #42536b;
+                      border-radius: 7px; padding: 6px 11px; }
+    button { cursor: pointer; }
+    button:hover { background: #293b50; }
+    button:focus-visible, select:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid #a3e6f4; outline-offset: 3px; }
+    .primary { color: #09131e; background: #a6e2ef; border-color: #a6e2ef; min-width: 99px; font-weight: 650; }
+    .primary:hover { background: #ccf2fa; }
+    label { color: #d2deec; }
+    footer { margin-top: 14px; align-items: baseline; flex-wrap: wrap; color: #b0bed0; font-size: .86rem; }
+    #error { margin: 12px 0 0; color: #ffca9c; }
+    [hidden] { display: none !important; }
+    @media (max-width: 620px) {
+      main { padding: 12px 12px 24px; }
+      .control-row { align-items: flex-start; flex-direction: column; gap: 11px; }
+      .scene-top { font-size: .78rem; }
+      .numbers, dd, #offset { font-size: .72rem; }
+      dl { gap: 3px 8px; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Flyby camera</h1>
+    <div class="header-actions">
+      <label id="encounter-label" hidden>Encounter <select id="encounter"></select></label>
+      <a href="animation.html">Trajectory overview</a>
+    </div>
+  </header>
+  <section class="viewer" aria-label="Spacecraft camera playback">
+    <div class="scene">
+      <canvas id="camera" aria-label="Spacecraft view centered on the flyby target"></canvas>
+      <div class="hud">
+        <div class="scene-top">
+          <div class="readout">
+            <strong id="body"></strong>
+            <div id="offset"></div>
+          </div>
+          <dl class="stats">
+            <dt>Center distance</dt><dd id="range"></dd>
+            <dt>Relative speed</dt><dd id="speed"></dd>
+            <dt>Solar phase</dt><dd id="phase"></dd>
+            <dt id="latitude-label">Body-fixed latitude</dt><dd id="latitude"></dd>
+          </dl>
+        </div>
+        <div class="scene-bottom numbers"><span id="utc"></span><span id="surface-model"></span></div>
+      </div>
+    </div>
+    <div class="controls">
+      <input class="timeline" id="timeline" type="range" min="0" value="0" step="1" aria-label="Flyby timeline">
+      <div class="control-row">
+        <div class="buttons">
+          <button class="primary" id="play" type="button">Play flyby</button>
+          <button id="periapsis" type="button">Periapsis</button>
+        </div>
+        <div class="lens">
+          <label for="fov">Vertical field of view</label>
+          <input id="fov" type="range" min="4" max="120" step="1">
+          <output id="fov-value" for="fov"></output>
+          <button id="fit-rings" type="button">Ring view</button>
+          <label id="rings-label"><input id="rings" type="checkbox" checked> Rings</label>
+        </div>
+      </div>
+    </div>
+  </section>
+  <p id="error" role="alert" hidden></p>
+  <footer>
+    <span>Time is compressed away from periapsis. Faint rings are brightened for visibility.</span>
+    <span>Maps by <a href="https://www.solarsystemscope.com/textures/">Solar System Scope</a> (<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>)</span>
+  </footer>
+</main>
+<script id="flyby-data" type="application/json">__FLYBY_DATA__</script>
+<script type="text/plain" id="vertex">#version 300 es
+void main() {
+    vec2 corners = vec2(float((gl_VertexID << 1) & 2), float(gl_VertexID & 2));
+    gl_Position = vec4(corners * 2.0 - 1.0, 0.0, 1.0);
+}
+</script>
+<script type="text/plain" id="fragment">#version 300 es
+precision highp float;
+out vec4 pixel;
+uniform vec2 resolution;
+uniform float lens;
+uniform mat3 cameraAxes;
+uniform mat3 inertialAxes;
+uniform vec3 observer;
+uniform vec3 sun;
+uniform vec3 radii;
+uniform float sunRadius;
+uniform sampler2D surfaceMap;
+uniform bool textured;
+uniform float atmosphere;
+uniform vec3 airColor;
+uniform vec4 bands[12];
+uniform int bandCount;
+uniform float ringGain;
+
+const float PI = 3.14159265359;
+const float FAR = 1.0e10;
+
+// Ellipsoid intersection reformulated to retain precision at large ranges.
+float surfaceHit(vec3 origin, vec3 ray, float scale) {
+    vec3 o = origin / (radii * scale);
+    vec3 d = ray / (radii * scale);
+    float a = dot(d, d);
+    float b = dot(o, d);
+    vec3 crossTerm = cross(o, d);
+    float disc = a - dot(crossTerm, crossTerm);
+    if (disc < 0.0) return FAR;
+    float root = sqrt(max(0.0, disc));
+    float near = (-b - root) / a;
+    float far = (-b + root) / a;
+    return near > 0.00001 ? near : (far > 0.00001 ? far : FAR);
+}
+
+float hash(vec2 p) {
+    return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453123);
+}
+
+vec3 background(vec3 sky, vec3 ray) {
+    vec2 uv = vec2(atan(sky.y, sky.x) / (2.0 * PI) + .5, asin(clamp(sky.z, -1.0, 1.0)) / PI + .5);
+    vec2 grid = uv * vec2(1000., 500.);
+    vec2 cell = floor(grid);
+    float seed = hash(cell);
+    vec2 point = .16 + .68 * vec2(hash(cell + 18.), hash(cell + 51.));
+    float width = clamp(length(fwidth(grid)), .025, .16);
+    float dotSize = .032 + .042 * hash(cell + 7.);
+    float star = step(.966, seed) * (1.0 - smoothstep(dotSize, dotSize + width, length(fract(grid) - point)));
+    vec3 color = vec3(.0013, .0020, .0036) + star * vec3(.29, .34, .41) * (.22 + .78 * hash(cell + 13.));
+    vec3 viewSun = sun - observer;
+    float angle = length(cross(ray, normalize(viewSun)));
+    if (dot(ray, viewSun) > 0.0) {
+        float angularRadius = sunRadius / length(viewSun);
+        color += 2.5 * vec3(1.0, .91, .79) * (1.0 - smoothstep(angularRadius * .9, angularRadius * 1.1, angle));
+    }
+    return color;
+}
+
+vec2 ringMaterial(float radius, float footprint) {
+    vec2 result = vec2(0.0);
+    for (int i = 0; i < 12; ++i) {
+        if (i >= bandCount) break;
+        vec4 band = bands[i];
+        float area = max(0.0, min(radius + footprint * .5, band.y)
+                              - max(radius - footprint * .5, band.x)) / footprint;
+        // Average the small radial variations over the projected pixel.
+        vec2 halfWave = vec2(190., 517.) * footprint * .5;
+        vec2 waves = sin(vec2(190., 517.) * radius) * sin(halfWave) / halfWave;
+        float grain = .88 + dot(vec2(.08, .035), waves);
+        float tau = area * band.z * grain;
+        result += vec2(tau, tau * band.w);
+    }
+    return vec2(result.x, result.y / max(.000000001, result.x));
+}
+
+float ringScatter(float tau, float sunElevation, float viewElevation, bool litFace) {
+    if (tau < .0001) return tau / viewElevation;
+    float incoming = 1.0 / sunElevation;
+    float outgoing = 1.0 / viewElevation;
+    if (litFace) {
+        float rate = incoming + outgoing;
+        return (1.0 - exp(-tau * rate)) * outgoing / rate;
+    }
+    float difference = outgoing - incoming;
+    if (abs(difference) < .0001) return tau * outgoing * exp(-tau * outgoing);
+    return (exp(-tau * incoming) - exp(-tau * outgoing)) * outgoing / difference;
+}
+
+void main() {
+    vec2 screen = (gl_FragCoord.xy * 2.0 - resolution) / resolution.y * lens;
+    vec3 ray = normalize(cameraAxes * vec3(screen, 1.0));
+    vec3 sky = normalize(inertialAxes * vec3(screen, 1.0));
+    vec3 color = background(sky, ray);
+    float hit = surfaceHit(observer, ray, 1.0);
+    if (hit < FAR) {
+        vec3 p = observer + hit * ray;
+        vec3 normal = normalize(p / (radii * radii));
+        vec3 light = normalize(sun - p);
+        vec3 mapPoint = normalize(p / radii);
+        vec2 uv = vec2(atan(mapPoint.y, mapPoint.x) / (2.0 * PI) + .5, .5 - asin(clamp(mapPoint.z, -1.0, 1.0)) / PI);
+        vec3 albedo = textured ? pow(texture(surfaceMap, uv).rgb, vec3(2.2)) : vec3(.19, .165, .145);
+        float daylight = max(0.0, dot(normal, light));
+        float transmission = 1.0;
+        if (bandCount > 0 && abs(light.z) > .00001) {
+            float distance = -p.z / light.z;
+            if (distance > 0.0) {
+                float radius = length((p + distance * light).xy);
+                transmission = exp(-ringMaterial(radius, .00010).x / abs(light.z));
+            }
+        }
+        color = albedo * pow(daylight, .8) * (0.87 + .13 * dot(normal, -ray)) * transmission;
+        // Keep scattering in the sunlit limb and its immediate twilight.
+        float limb = pow(1.0 - clamp(dot(normal, -ray), 0.0, 1.0), 4.0);
+        color += airColor * limb * .12 * smoothstep(-.105, .48, dot(normal, light)) * transmission;
+    } else if (atmosphere > 0.0) {
+        float rim = surfaceHit(observer, ray, 1.0 + atmosphere);
+        if (rim < FAR) {
+            vec3 o = observer / radii;
+            vec3 d = ray / radii;
+            float altitude = length(o - d * dot(o, d) / dot(d, d)) - 1.0;
+            vec3 p = observer + rim * ray;
+            float sunlit = smoothstep(-.09, .50, dot(normalize(p / (radii * radii)), normalize(sun - p)));
+            color += airColor * .079 * exp(-4.0 * max(0.0, altitude) / atmosphere) * sunlit;
+        }
+    }
+    if (bandCount > 0 && abs(ray.z) > .000001) {
+        float ringHit = -observer.z / ray.z;
+        vec3 p = observer + ringHit * ray;
+        float rho = length(p.xy);
+        float footprint = clamp(fwidth(rho), .000002, .16);
+        if (ringHit > 0.0 && ringHit < hit &&
+            rho >= bands[0].x - footprint && rho <= bands[bandCount - 1].y + footprint) {
+            vec2 ring = ringMaterial(rho, footprint);
+            vec3 light = normalize(sun - p);
+            float viewElevation = max(.035, abs(ray.z));
+            float opacity = 1.0 - exp(-ring.x / viewElevation);
+            float illumination = surfaceHit(p, light, 1.0) < FAR ? 0.0 :
+                ringScatter(ring.x, max(.035, abs(light.z)), viewElevation, observer.z * light.z >= 0.0);
+            vec3 tint = mix(vec3(.88, .78, .66), vec3(.91, .88, .81), smoothstep(1.75, 2.35, rho));
+            color = color * (1.0 - opacity) + tint * ring.y * min(1.0, illumination * 2.3 * ringGain);
+        }
+    }
+    pixel = vec4(pow(clamp(color, 0.0, 1.0), vec3(1.0 / 2.2)), 1.0);
+}
+</script>
+<script>
+"use strict";
+const clips = JSON.parse(document.getElementById("flyby-data").textContent);
+const element = (id) => document.getElementById(id);
+const canvas = element("camera");
+const timeline = element("timeline");
+const play = element("play");
+const fov = element("fov");
+const rings = element("rings");
+const picker = element("encounter");
+const formatter = new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 });
+let activeClip = 0;
+let frameIndex = 0;
+let playing = false;
+let openingFrame = true;
+let imageReady = false;
+let lastTick = 0;
+let animationRequest = 0;
+let drawFrame;
+
+function reportError(message) {
+    element("error").textContent = message;
+    element("error").hidden = false;
+}
+
+function elapsed(seconds) {
+    let t = Math.round(Math.abs(seconds));
+    if (t === 0) return "Closest approach";
+    const days = Math.floor(t / 86400);
+    t %= 86400;
+    const parts = [Math.floor(t / 3600), Math.floor(t / 60) % 60, t % 60];
+    return "CA " + (seconds < 0 ? "−" : "+") + (days ? days + "d " : "") +
+        parts.map((part) => String(part).padStart(2, "0")).join(":");
+}
+
+function render() {
+    const clip = clips[activeClip];
+    const frame = clip.frames[frameIndex];
+    element("body").textContent = clip.name;
+    element("offset").textContent = elapsed(frame.offset);
+    element("range").textContent = formatter.format(frame.range_km) + " km";
+    element("speed").textContent = frame.speed_km_s.toFixed(2) + " km/s";
+    element("phase").textContent = frame.phase_deg.toFixed(1) + "°";
+    element("latitude-label").hidden = frame.latitude_deg === null;
+    element("latitude").hidden = frame.latitude_deg === null;
+    if (frame.latitude_deg !== null) {
+        element("latitude").textContent = Math.abs(frame.latitude_deg).toFixed(1) + "° " +
+            (frame.latitude_deg < 0 ? "S" : "N");
+    }
+    element("utc").textContent = frame.utc + " UTC";
+    element("surface-model").textContent = clip.surface_model;
+    element("surface-model").hidden = !clip.surface_model;
+    element("fov-value").textContent = fov.value + "°";
+    timeline.value = frameIndex;
+    timeline.setAttribute("aria-valuetext", elapsed(frame.offset));
+    if (imageReady && drawFrame) drawFrame(clip, frame);
+}
+
+function pause() {
+    playing = false;
+    cancelAnimationFrame(animationRequest);
+    play.textContent = "Play flyby";
+}
+
+function tick(now) {
+    if (!playing) return;
+    if (now - lastTick >= 1000 / 30) {
+        const steps = Math.max(1, Math.floor((now - lastTick) * 30 / 1000));
+        frameIndex = Math.min(frameIndex + steps, clips[activeClip].frames.length - 1);
+        lastTick += steps * 1000 / 30;
+        render();
+    }
+    if (frameIndex === clips[activeClip].frames.length - 1) pause();
+    if (playing) animationRequest = requestAnimationFrame(tick);
+}
+
+function startRenderer() {
+    const gl = canvas.getContext("webgl2", { alpha: false, antialias: false, depth: false });
+    if (!gl) throw new Error("The flyby view needs a browser with WebGL 2 enabled.");
+    const program = gl.createProgram();
+    for (const [kind, id] of [[gl.VERTEX_SHADER, "vertex"], [gl.FRAGMENT_SHADER, "fragment"]]) {
+        const shader = gl.createShader(kind);
+        gl.shaderSource(shader, element(id).textContent);
+        gl.compileShader(shader);
+        if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(shader));
+        gl.attachShader(program, shader);
+    }
+    gl.linkProgram(program);
+    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(program));
+    gl.useProgram(program);
+    gl.bindVertexArray(gl.createVertexArray());
+    const u = {};
+    for (const name of ["resolution", "lens", "cameraAxes", "inertialAxes", "observer", "sun", "radii",
+                        "sunRadius", "surfaceMap", "textured", "atmosphere", "airColor", "bands[0]", "bandCount", "ringGain"]) {
+        u[name] = gl.getUniformLocation(program, name);
+    }
+    const mapTexture = gl.createTexture();
+    gl.activeTexture(gl.TEXTURE0);
+    gl.bindTexture(gl.TEXTURE_2D, mapTexture);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.REPEAT);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+    gl.uniform1i(u.surfaceMap, 0);
+
+    drawFrame = (clip, frame) => {
+        const scale = Math.min(window.devicePixelRatio || 1, 1.5);
+        const width = Math.max(1, Math.round(canvas.clientWidth * scale));
+        const height = Math.max(1, Math.round(canvas.clientHeight * scale));
+        if (canvas.width !== width || canvas.height !== height) {
+            canvas.width = width;
+            canvas.height = height;
+        }
+        gl.viewport(0, 0, width, height);
+        gl.uniform2f(u.resolution, width, height);
+        gl.uniform1f(u.lens, Math.tan(Number(fov.value) * Math.PI / 360));
+        gl.uniformMatrix3fv(u.cameraAxes, false, frame.axes.flat());
+        gl.uniformMatrix3fv(u.inertialAxes, false, frame.inertial.flat());
+        gl.uniform3fv(u.observer, frame.camera);
+        gl.uniform3fv(u.sun, frame.sun);
+        gl.uniform3fv(u.radii, clip.radius);
+        gl.uniform1f(u.sunRadius, clip.sun_radius);
+        gl.uniform1f(u.atmosphere, clip.atmosphere[0]);
+        gl.uniform3fv(u.airColor, clip.atmosphere[1]);
+        const bandData = new Float32Array(48);
+        bandData.set(clip.rings.flat());
+        gl.uniform4fv(u["bands[0]"], bandData);
+        gl.uniform1i(u.bandCount, rings.checked ? clip.rings.length : 0);
+        gl.uniform1f(u.ringGain, { Jupiter: 4800, Uranus: 9, Neptune: 22 }[clip.name] || 1);
+        gl.drawArrays(gl.TRIANGLES, 0, 3);
+    };
+
+    let loadCounter = 0;
+    return (clip) => {
+        const request = ++loadCounter;
+        imageReady = false;
+        const finish = (image) => {
+            if (request !== loadCounter) return;
+            if (image) {
+                gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, image);
+            } else {
+                gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA,
+                              gl.UNSIGNED_BYTE, new Uint8Array([128, 128, 128, 255]));
+            }
+            gl.generateMipmap(gl.TEXTURE_2D);
+            gl.uniform1i(u.textured, image ? 1 : 0);
+            imageReady = true;
+            render();
+        };
+        if (clip.texture) {
+            const image = new Image();
+            image.onload = () => finish(image);
+            image.onerror = () => {
+                if (request === loadCounter) reportError("The surface map could not be displayed.");
+                finish(null);
+            };
+            image.src = clip.texture;
+        } else {
+            finish(null);
+        }
+    };
+}
+
+try {
+    const loadView = startRenderer();
+    function selectClip(index) {
+        pause();
+        activeClip = index;
+        const clip = clips[index];
+        timeline.max = clip.frames.length - 1;
+        frameIndex = clip.periapsis;
+        fov.value = clip.fov;
+        element("rings-label").hidden = !clip.rings.length;
+        element("fit-rings").hidden = !clip.rings.length;
+        openingFrame = true;
+        loadView(clip);
+        render();
+    }
+    clips.forEach((clip, i) => picker.add(new Option(clip.name, i)));
+    element("encounter-label").hidden = clips.length < 2;
+    picker.addEventListener("change", () => selectClip(Number(picker.value)));
+    timeline.addEventListener("input", () => {
+        pause();
+        openingFrame = false;
+        frameIndex = Number(timeline.value);
+        render();
+    });
+    play.addEventListener("click", () => {
+        if (playing) {
+            pause();
+            return;
+        }
+        if (openingFrame || frameIndex === clips[activeClip].frames.length - 1) frameIndex = 0;
+        openingFrame = false;
+        playing = true;
+        play.textContent = "Pause";
+        lastTick = performance.now();
+        render();
+        animationRequest = requestAnimationFrame(tick);
+    });
+    element("periapsis").addEventListener("click", () => {
+        pause();
+        openingFrame = false;
+        frameIndex = clips[activeClip].periapsis;
+        render();
+    });
+    fov.addEventListener("input", render);
+    rings.addEventListener("change", render);
+    element("fit-rings").addEventListener("click", () => {
+        fov.value = clips[activeClip].ring_fov;
+        rings.checked = true;
+        render();
+    });
+    window.addEventListener("resize", render);
+    selectClip(0);
+} catch (error) {
+    reportError(error.message);
+}
+</script>
+</body>
+</html>

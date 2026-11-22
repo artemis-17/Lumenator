@@ -1,0 +1,478 @@
+{
+  "status": "complete",
+  "selected": {
+    "guide": {
+      "dive_perihelion_au": 0.23844907,
+      "burn_radius_au": 0.405,
+      "burn_cone_rad": 0.629835,
+      "dive_clock_rad": 0.0,
+      "burn_clock_rad": -0.33951243560117084
+    },
+    "launch_anchor": 0.15268950254766023
+  },
+  "result": {
+    "mission_success": true,
+    "escape_reached": true,
+    "day": 4360.3871416196735,
+    "flight_years": 11.938089367884116,
+    "r_au": 29.940767220718268,
+    "perihelion_au": 0.2384491544692158,
+    "energy_m2s2": 60091545.278326675,
+    "v_inf_km_s": 10.962804867215933,
+    "projected_sail_v_inf_km_s": 11.228109384081867,
+    "escape_et": 1552878259.2604094,
+    "final_flyby_exit_et": 1552878259.2604094,
+    "flyby_count": 1,
+    "valid_flyby_count": 1,
+    "encounters": [
+      {
+        "planet": "Neptune",
+        "entry_time": 373562590.974297,
+        "periapsis_time": 375150070.2376903,
+        "exit_time": 376737449.03593975,
+        "periapsis_km": 101176.4528269541,
+        "periapsis_position_m": [
+          2719800820779.9624,
+          3295125648858.2627,
+          1281111100287.0188
+        ],
+        "energy_change_km2_s2": -2.9941292274492755,
+        "b_plane_clock_deg": 260.166783941235,
+        "turn_deg": 28.474419164461683,
+        "relative_entry_speed_km_s": 14.417330263640142,
+        "relative_v_inf_km_s": 14.396712287828086,
+        "impact_parameter_km": 129998.10567067034
+      }
+    ],
+    "launch_et": 1176140810.2244697,
+    "thermal_violation": false,
+    "planet_violation": false,
+    "geometry_ok": true,
+    "failure_reason": null,
+    "flyby_diagnostics": [
+      {
+        "body": "Neptune",
+        "closest_approach_km": 101176.4528269541,
+        "actual_periapsis_km": 101176.4528269541,
+        "requested_periapsis_km": 100000.0,
+        "tolerance_km": 10000.0,
+        "absolute_periapsis_error_km": 1176.4528269541042,
+        "requested_clock_deg": 270.0,
+        "absolute_clock_error_deg": 9.833216058765004,
+        "requested_energy_direction": "either",
+        "periapsis_speed_km_s": 18.504962176950794,
+        "relative_speed_km_s": 14.417330263640142,
+        "excess_speed_km_s": 14.396712287828088,
+        "estimated_impact_parameter_km": 129998.10567067053,
+        "required_impact_parameter_km": 128828.89644401499,
+        "focusing_ratio": 1.2882889644401498,
+        "impact_estimate_basis": "gate_entry_two_body",
+        "gate_entered": true,
+        "gate_exited": true,
+        "exit_state_j2000_si": [
+          2730674499614.4507,
+          3312997000632.116,
+          1276550318514.8335,
+          6766.775962175446,
+          11200.091591924564,
+          -2865.421791611745
+        ],
+        "flyby_completed": true,
+        "geometry_satisfied": true,
+        "failure_reason": null
+      }
+    ]
+  },
+  "candidates": [
+    {
+      "guide": {
+        "dive_perihelion_au": 0.23844907,
+        "burn_radius_au": 0.405,
+        "burn_cone_rad": 0.629835,
+        "dive_clock_rad": 0.0,
+        "burn_clock_rad": -0.33951243560117084
+      },
+      "launch_anchor": 0.15268950254766023,
+      "optimization": null,
+      "result": {
+        "mission_success": true,
+        "escape_reached": true,
+        "day": 4360.3871416196735,
+        "flight_years": 11.938089367884116,
+        "r_au": 29.940767220718268,
+        "perihelion_au": 0.2384491544692158,
+        "energy_m2s2": 60091545.278326675,
+        "v_inf_km_s": 10.962804867215933,
+        "projected_sail_v_inf_km_s": 11.228109384081867,
+        "escape_et": 1552878259.2604094,
+        "final_flyby_exit_et": 1552878259.2604094,
+        "flyby_count": 1,
+        "valid_flyby_count": 1,
+        "encounters": [
+          {
+            "planet": "Neptune",
+            "entry_time": 373562590.974297,
+            "periapsis_time": 375150070.2376903,
+            "exit_time": 376737449.03593975,
+            "periapsis_km": 101176.4528269541,
+            "periapsis_position_m": [
+              2719800820779.9624,
+              3295125648858.2627,
+              1281111100287.0188
+            ],
+            "energy_change_km2_s2": -2.9941292274492755,
+            "b_plane_clock_deg": 260.166783941235,
+            "turn_deg": 28.474419164461683,
+            "relative_entry_speed_km_s": 14.417330263640142,
+            "relative_v_inf_km_s": 14.396712287828086,
+            "impact_parameter_km": 129998.10567067034
+          }
+        ],
+        "launch_et": 1176140810.2244697,
+        "thermal_violation": false,
+        "planet_violation": false,
+        "geometry_ok": true,
+        "failure_reason": null,
+        "flyby_diagnostics": [
+          {
+            "body": "Neptune",
+            "closest_approach_km": 101176.4528269541,
+            "actual_periapsis_km": 101176.4528269541,
+            "requested_periapsis_km": 100000.0,
+            "tolerance_km": 10000.0,
+            "absolute_periapsis_error_km": 1176.4528269541042,
+            "requested_clock_deg": 270.0,
+            "absolute_clock_error_deg": 9.833216058765004,
+            "requested_energy_direction": "either",
+            "periapsis_speed_km_s": 18.504962176950794,
+            "relative_speed_km_s": 14.417330263640142,
+            "excess_speed_km_s": 14.396712287828088,
+            "estimated_impact_parameter_km": 129998.10567067053,
+            "required_impact_parameter_km": 128828.89644401499,
+            "focusing_ratio": 1.2882889644401498,
+            "impact_estimate_basis": "gate_entry_two_body",
+            "gate_entered": true,
+            "gate_exited": true,
+            "exit_state_j2000_si": [
+              2730674499614.4507,
+              3312997000632.116,
+              1276550318514.8335,
+              6766.775962175446,
+              11200.091591924564,
+              -2865.421791611745
+            ],
+            "flyby_completed": true,
+            "geometry_satisfied": true,
+            "failure_reason": null
+          }
+        ]
+      }
+    },
+    {
+      "guide": {
+        "dive_perihelion_au": 0.23844907,
+        "burn_radius_au": 0.445,
+        "burn_cone_rad": 0.629835,
+        "dive_clock_rad": 0.0,
+        "burn_clock_rad": -0.080236630451115
+      },
+      "launch_anchor": 0.704659730441059,
+      "optimization": null,
+      "result": {
+        "mission_success": false,
+        "escape_reached": true,
+        "day": 18262.5,
+        "flight_years": 50.0,
+        "r_au": 100.28938251770946,
+        "perihelion_au": 0.23844913807869428,
+        "energy_m2s2": 28096976.11246902,
+        "v_inf_km_s": 7.496262550427249,
+        "projected_sail_v_inf_km_s": 7.612593752543633,
+        "escape_et": null,
+        "final_flyby_exit_et": null,
+        "flyby_count": 0,
+        "valid_flyby_count": 0,
+        "encounters": [],
+        "launch_et": 1206980755.2487116,
+        "thermal_violation": false,
+        "planet_violation": false,
+        "geometry_ok": false,
+        "failure_reason": "missed_planet",
+        "flyby_diagnostics": [
+          {
+            "body": "Neptune",
+            "closest_approach_km": 1073975077.0579855,
+            "actual_periapsis_km": null,
+            "requested_periapsis_km": 100000.0,
+            "tolerance_km": 10000.0,
+            "absolute_periapsis_error_km": null,
+            "requested_clock_deg": 270.0,
+            "absolute_clock_error_deg": null,
+            "requested_energy_direction": "either",
+            "periapsis_speed_km_s": null,
+            "relative_speed_km_s": 12.875228120711922,
+            "excess_speed_km_s": 12.875228120711922,
+            "estimated_impact_parameter_km": 1073969683.5612442,
+            "required_impact_parameter_km": 135085.6516663724,
+            "focusing_ratio": 1.350856516663724,
+            "impact_estimate_basis": "ballistic_at_closest",
+            "gate_entered": false,
+            "gate_exited": false,
+            "exit_state_j2000_si": null,
+            "flyby_completed": false,
+            "geometry_satisfied": false,
+            "failure_reason": "missed_planet"
+          }
+        ]
+      }
+    },
+    {
+      "guide": {
+        "dive_perihelion_au": 0.23844907,
+        "burn_radius_au": 0.425,
+        "burn_cone_rad": 0.629835,
+        "dive_clock_rad": 0.0,
+        "burn_clock_rad": -0.08036815524398565
+      },
+      "launch_anchor": 0.7044572324162893,
+      "optimization": null,
+      "result": {
+        "mission_success": false,
+        "escape_reached": true,
+        "day": 18262.5,
+        "flight_years": 50.0,
+        "r_au": 152.75947064268348,
+        "perihelion_au": 0.23844913849180133,
+        "energy_m2s2": 101417831.25857966,
+        "v_inf_km_s": 14.242038566060664,
+        "projected_sail_v_inf_km_s": 14.282492066997278,
+        "escape_et": null,
+        "final_flyby_exit_et": null,
+        "flyby_count": 0,
+        "valid_flyby_count": 0,
+        "encounters": [],
+        "launch_et": 1206969441.1820538,
+        "thermal_violation": false,
+        "planet_violation": false,
+        "geometry_ok": false,
+        "failure_reason": "missed_planet",
+        "flyby_diagnostics": [
+          {
+            "body": "Neptune",
+            "closest_approach_km": 1184942428.4243646,
+            "actual_periapsis_km": null,
+            "requested_periapsis_km": 100000.0,
+            "tolerance_km": 10000.0,
+            "absolute_periapsis_error_km": null,
+            "requested_clock_deg": 270.0,
+            "absolute_clock_error_deg": null,
+            "requested_energy_direction": "either",
+            "periapsis_speed_km_s": null,
+            "relative_speed_km_s": 18.180583130484454,
+            "excess_speed_km_s": 18.180583130484454,
+            "estimated_impact_parameter_km": 1184942104.3533223,
+            "required_impact_parameter_km": 118897.69074923579,
+            "focusing_ratio": 1.188976907492358,
+            "impact_estimate_basis": "ballistic_at_closest",
+            "gate_entered": false,
+            "gate_exited": false,
+            "exit_state_j2000_si": null,
+            "flyby_completed": false,
+            "geometry_satisfied": false,
+            "failure_reason": "missed_planet"
+          }
+        ]
+      }
+    },
+    {
+      "guide": {
+        "dive_perihelion_au": 0.23844907,
+        "burn_radius_au": 0.405,
+        "burn_cone_rad": 0.629835,
+        "dive_clock_rad": 0.0,
+        "burn_clock_rad": -0.08042058464409224
+      },
+      "launch_anchor": 0.7046928686930612,
+      "optimization": null,
+      "result": {
+        "mission_success": false,
+        "escape_reached": true,
+        "day": 18262.5,
+        "flight_years": 50.0,
+        "r_au": 183.1623028688034,
+        "perihelion_au": 0.23844913800933892,
+        "energy_m2s2": 157942437.46281445,
+        "v_inf_km_s": 17.773150393940544,
+        "projected_sail_v_inf_km_s": 17.800203793848382,
+        "escape_et": null,
+        "final_flyby_exit_et": null,
+        "flyby_count": 0,
+        "valid_flyby_count": 0,
+        "encounters": [],
+        "launch_et": 1206982606.765004,
+        "thermal_violation": false,
+        "planet_violation": false,
+        "geometry_ok": false,
+        "failure_reason": "missed_planet",
+        "flyby_diagnostics": [
+          {
+            "body": "Neptune",
+            "closest_approach_km": 1322569729.7865193,
+            "actual_periapsis_km": null,
+            "requested_periapsis_km": 100000.0,
+            "tolerance_km": 10000.0,
+            "absolute_periapsis_error_km": null,
+            "requested_clock_deg": 270.0,
+            "absolute_clock_error_deg": null,
+            "requested_energy_direction": "either",
+            "periapsis_speed_km_s": null,
+            "relative_speed_km_s": 21.445374107528995,
+            "excess_speed_km_s": 21.445374107528995,
+            "estimated_impact_parameter_km": 1322547630.537235,
+            "required_impact_parameter_km": 113899.17948707948,
+            "focusing_ratio": 1.1389917948707948,
+            "impact_estimate_basis": "ballistic_at_closest",
+            "gate_entered": false,
+            "gate_exited": false,
+            "exit_state_j2000_si": null,
+            "flyby_completed": false,
+            "geometry_satisfied": false,
+            "failure_reason": "missed_planet"
+          }
+        ]
+      }
+    },
+    {
+      "guide": {
+        "dive_perihelion_au": 0.23844907,
+        "burn_radius_au": 0.445,
+        "burn_cone_rad": 0.629835,
+        "dive_clock_rad": 0.0,
+        "burn_clock_rad": 0.0
+      },
+      "launch_anchor": 0.13043478260869565,
+      "optimization": null,
+      "result": {
+        "mission_success": false,
+        "escape_reached": true,
+        "day": 18262.5,
+        "flight_years": 50.0,
+        "r_au": 153.776244373367,
+        "perihelion_au": 0.23844922291838044,
+        "energy_m2s2": 103780438.90394397,
+        "v_inf_km_s": 14.406973235481766,
+        "projected_sail_v_inf_km_s": 14.44670084121234,
+        "escape_et": null,
+        "final_flyby_exit_et": null,
+        "flyby_count": 0,
+        "valid_flyby_count": 0,
+        "encounters": [],
+        "launch_et": 1174897383.849705,
+        "thermal_violation": false,
+        "planet_violation": false,
+        "geometry_ok": false,
+        "failure_reason": "missed_planet",
+        "flyby_diagnostics": [
+          {
+            "body": "Neptune",
+            "closest_approach_km": 2143431207.1942513,
+            "actual_periapsis_km": null,
+            "requested_periapsis_km": 100000.0,
+            "tolerance_km": 10000.0,
+            "absolute_periapsis_error_km": null,
+            "requested_clock_deg": 270.0,
+            "absolute_clock_error_deg": null,
+            "requested_energy_direction": "either",
+            "periapsis_speed_km_s": null,
+            "relative_speed_km_s": 19.586729714191943,
+            "excess_speed_km_s": 19.586729714191943,
+            "estimated_impact_parameter_km": 2143423655.8168147,
+            "required_impact_parameter_km": 116464.72708995284,
+            "focusing_ratio": 1.1646472708995284,
+            "impact_estimate_basis": "ballistic_at_closest",
+            "gate_entered": false,
+            "gate_exited": false,
+            "exit_state_j2000_si": null,
+            "flyby_completed": false,
+            "geometry_satisfied": false,
+            "failure_reason": "missed_planet"
+          }
+        ]
+      }
+    },
+    {
+      "guide": {
+        "dive_perihelion_au": 0.23844907,
+        "burn_radius_au": 0.445,
+        "burn_cone_rad": 0.629835,
+        "dive_clock_rad": 0.0,
+        "burn_clock_rad": 0.0
+      },
+      "launch_anchor": 0.6956521739130435,
+      "optimization": null,
+      "result": {
+        "mission_success": false,
+        "escape_reached": true,
+        "day": 18262.5,
+        "flight_years": 50.0,
+        "r_au": 150.15488653623322,
+        "perihelion_au": 0.23844914754692942,
+        "energy_m2s2": 97691657.69877505,
+        "v_inf_km_s": 13.97795819844766,
+        "projected_sail_v_inf_km_s": 14.01988760122821,
+        "escape_et": null,
+        "final_flyby_exit_et": null,
+        "flyby_count": 0,
+        "valid_flyby_count": 0,
+        "encounters": [],
+        "launch_et": 1206477480.734818,
+        "thermal_violation": false,
+        "planet_violation": false,
+        "geometry_ok": false,
+        "failure_reason": "missed_planet",
+        "flyby_diagnostics": [
+          {
+            "body": "Neptune",
+            "closest_approach_km": 2208878911.9818473,
+            "actual_periapsis_km": null,
+            "requested_periapsis_km": 100000.0,
+            "tolerance_km": 10000.0,
+            "absolute_periapsis_error_km": null,
+            "requested_clock_deg": 270.0,
+            "absolute_clock_error_deg": null,
+            "requested_energy_direction": "either",
+            "periapsis_speed_km_s": null,
+            "relative_speed_km_s": 19.314224144789137,
+            "excess_speed_km_s": 19.314224144789137,
+            "estimated_impact_parameter_km": 2208857829.836918,
+            "required_impact_parameter_km": 116898.7272889934,
+            "focusing_ratio": 1.168987272889934,
+            "impact_estimate_basis": "ballistic_at_closest",
+            "gate_entered": false,
+            "gate_exited": false,
+            "exit_state_j2000_si": null,
+            "flyby_completed": false,
+            "geometry_satisfied": false,
+            "failure_reason": "missed_planet"
+          }
+        ]
+      }
+    }
+  ],
+  "fastest_candidate_index": 0,
+  "feasibility": "full_dynamics_feasible",
+  "departure_turn_screen": null,
+  "mission": {
+    "flybys": [
+      "Neptune"
+    ],
+    "geometry": [
+      "Neptune:100000:10000:either:270:10"
+    ],
+    "epoch": "2036-12-31T12:00:00.000",
+    "horizon_years": 50.0,
+    "launch_window_years": 1.7704920242486968,
+    "dt_days": 4.0,
+    "objective": "escape"
+  }
+}

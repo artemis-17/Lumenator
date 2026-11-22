@@ -1,0 +1,300 @@
+{
+  "status": "complete",
+  "selected": {
+    "guide": {
+      "dive_perihelion_au": 0.23844907,
+      "burn_radius_au": 0.445,
+      "burn_cone_rad": 0.629835,
+      "dive_clock_rad": 0.0,
+      "burn_clock_rad": 0.17379105462529962
+    },
+    "launch_anchor": 0.3485970416079058,
+    "leg_controls": {
+      "Uranus": [
+        0.11501403131175672,
+        -0.012188495498377978
+      ]
+    }
+  },
+  "result": {
+    "mission_success": true,
+    "escape_reached": true,
+    "day": 4293.778118530767,
+    "flight_years": 11.755723801590051,
+    "r_au": 18.391034939362832,
+    "perihelion_au": 0.238449303293018,
+    "energy_m2s2": 12616196.508873634,
+    "v_inf_km_s": 5.023185544825839,
+    "projected_sail_v_inf_km_s": 5.900597464216305,
+    "escape_et": 1497478670.62546,
+    "final_flyby_exit_et": 1497478670.62546,
+    "flyby_count": 2,
+    "valid_flyby_count": 2,
+    "encounters": [
+      {
+        "planet": "Jupiter",
+        "entry_time": 147754886.973331,
+        "periapsis_time": 148200227.9928733,
+        "exit_time": 148645512.07867655,
+        "periapsis_km": 563061.0945262539,
+        "periapsis_position_m": [
+          -814461716869.5952,
+          -27598384341.142487,
+          7997344094.237559
+        ],
+        "energy_change_km2_s2": -137.760676752538,
+        "b_plane_clock_deg": 179.9763887475353,
+        "turn_deg": 33.231907065400975,
+        "relative_entry_speed_km_s": 24.193654903632066,
+        "relative_v_inf_km_s": 23.718110483326743,
+        "impact_parameter_km": 754810.3588629363
+      },
+      {
+        "planet": "Uranus",
+        "entry_time": 368589315.1729072,
+        "periapsis_time": 369786005.3785548,
+        "exit_time": 370982429.4410582,
+        "periapsis_km": 92710.19186080078,
+        "periapsis_position_m": [
+          -2481207331961.033,
+          1049351450269.8798,
+          494615978987.974
+        ],
+        "energy_change_km2_s2": 40.73706634971263,
+        "b_plane_clock_deg": 21.09114721531135,
+        "turn_deg": 39.56340878015382,
+        "relative_entry_speed_km_s": 11.045116540267507,
+        "relative_v_inf_km_s": 11.005823682629673,
+        "impact_parameter_km": 133009.03932281077
+      }
+    ],
+    "launch_et": 1126496241.1844018,
+    "thermal_violation": false,
+    "planet_violation": false,
+    "geometry_ok": true,
+    "failure_reason": null,
+    "flyby_diagnostics": [
+      {
+        "body": "Jupiter",
+        "closest_approach_km": 563061.0945262539,
+        "actual_periapsis_km": 563061.0945262539,
+        "requested_periapsis_km": 600000.0,
+        "tolerance_km": 100000.0,
+        "absolute_periapsis_error_km": 36938.90547374613,
+        "requested_clock_deg": null,
+        "absolute_clock_error_deg": null,
+        "requested_energy_direction": "either",
+        "periapsis_speed_km_s": 31.82780552171882,
+        "relative_speed_km_s": 24.193654903632066,
+        "excess_speed_km_s": 23.718110483326743,
+        "estimated_impact_parameter_km": 754810.3588629367,
+        "required_impact_parameter_km": 793912.5458780025,
+        "focusing_ratio": 1.3231875764633376,
+        "impact_estimate_basis": "gate_entry_two_body",
+        "gate_entered": true,
+        "gate_exited": true,
+        "exit_state_j2000_si": [
+          -821419192422.274,
+          -24684338147.235912,
+          9374148339.040773,
+          -14564.890626743085,
+          6019.760315525567,
+          2846.6210580816073
+        ],
+        "flyby_completed": true,
+        "geometry_satisfied": true,
+        "failure_reason": null
+      },
+      {
+        "body": "Uranus",
+        "closest_approach_km": 92710.19186080078,
+        "actual_periapsis_km": 92710.19186080078,
+        "requested_periapsis_km": 80000.0,
+        "tolerance_km": 15000.0,
+        "absolute_periapsis_error_km": 12710.191860800784,
+        "requested_clock_deg": null,
+        "absolute_clock_error_deg": null,
+        "requested_energy_direction": "either",
+        "periapsis_speed_km_s": 15.68954492132053,
+        "relative_speed_km_s": 11.045116540267509,
+        "excess_speed_km_s": 11.005823682629673,
+        "estimated_impact_parameter_km": 133009.0393228118,
+        "required_impact_parameter_km": 118550.05955905768,
+        "focusing_ratio": 1.4818757444882211,
+        "impact_estimate_basis": "gate_entry_two_body",
+        "gate_entered": true,
+        "gate_exited": true,
+        "exit_state_j2000_si": [
+          -2494080790918.2866,
+          1049239891978.2819,
+          498082736253.1452,
+          -10664.017491420613,
+          -208.25238930488803,
+          2818.1025871553534
+        ],
+        "flyby_completed": true,
+        "geometry_satisfied": true,
+        "failure_reason": null
+      }
+    ]
+  },
+  "candidates": [
+    {
+      "guide": {
+        "dive_perihelion_au": 0.23844907,
+        "burn_radius_au": 0.445,
+        "burn_cone_rad": 0.629835,
+        "dive_clock_rad": 0.0,
+        "burn_clock_rad": 0.17379105462529962
+      },
+      "launch_anchor": 0.3485970416079058,
+      "leg_controls": {
+        "Uranus": [
+          0.11501403131175672,
+          -0.012188495498377978
+        ]
+      },
+      "optimization": null,
+      "result": {
+        "mission_success": true,
+        "escape_reached": true,
+        "day": 4293.778118530767,
+        "flight_years": 11.755723801590051,
+        "r_au": 18.391034939362832,
+        "perihelion_au": 0.238449303293018,
+        "energy_m2s2": 12616196.508873634,
+        "v_inf_km_s": 5.023185544825839,
+        "projected_sail_v_inf_km_s": 5.900597464216305,
+        "escape_et": 1497478670.62546,
+        "final_flyby_exit_et": 1497478670.62546,
+        "flyby_count": 2,
+        "valid_flyby_count": 2,
+        "encounters": [
+          {
+            "planet": "Jupiter",
+            "entry_time": 147754886.973331,
+            "periapsis_time": 148200227.9928733,
+            "exit_time": 148645512.07867655,
+            "periapsis_km": 563061.0945262539,
+            "periapsis_position_m": [
+              -814461716869.5952,
+              -27598384341.142487,
+              7997344094.237559
+            ],
+            "energy_change_km2_s2": -137.760676752538,
+            "b_plane_clock_deg": 179.9763887475353,
+            "turn_deg": 33.231907065400975,
+            "relative_entry_speed_km_s": 24.193654903632066,
+            "relative_v_inf_km_s": 23.718110483326743,
+            "impact_parameter_km": 754810.3588629363
+          },
+          {
+            "planet": "Uranus",
+            "entry_time": 368589315.1729072,
+            "periapsis_time": 369786005.3785548,
+            "exit_time": 370982429.4410582,
+            "periapsis_km": 92710.19186080078,
+            "periapsis_position_m": [
+              -2481207331961.033,
+              1049351450269.8798,
+              494615978987.974
+            ],
+            "energy_change_km2_s2": 40.73706634971263,
+            "b_plane_clock_deg": 21.09114721531135,
+            "turn_deg": 39.56340878015382,
+            "relative_entry_speed_km_s": 11.045116540267507,
+            "relative_v_inf_km_s": 11.005823682629673,
+            "impact_parameter_km": 133009.03932281077
+          }
+        ],
+        "launch_et": 1126496241.1844018,
+        "thermal_violation": false,
+        "planet_violation": false,
+        "geometry_ok": true,
+        "failure_reason": null,
+        "flyby_diagnostics": [
+          {
+            "body": "Jupiter",
+            "closest_approach_km": 563061.0945262539,
+            "actual_periapsis_km": 563061.0945262539,
+            "requested_periapsis_km": 600000.0,
+            "tolerance_km": 100000.0,
+            "absolute_periapsis_error_km": 36938.90547374613,
+            "requested_clock_deg": null,
+            "absolute_clock_error_deg": null,
+            "requested_energy_direction": "either",
+            "periapsis_speed_km_s": 31.82780552171882,
+            "relative_speed_km_s": 24.193654903632066,
+            "excess_speed_km_s": 23.718110483326743,
+            "estimated_impact_parameter_km": 754810.3588629367,
+            "required_impact_parameter_km": 793912.5458780025,
+            "focusing_ratio": 1.3231875764633376,
+            "impact_estimate_basis": "gate_entry_two_body",
+            "gate_entered": true,
+            "gate_exited": true,
+            "exit_state_j2000_si": [
+              -821419192422.274,
+              -24684338147.235912,
+              9374148339.040773,
+              -14564.890626743085,
+              6019.760315525567,
+              2846.6210580816073
+            ],
+            "flyby_completed": true,
+            "geometry_satisfied": true,
+            "failure_reason": null
+          },
+          {
+            "body": "Uranus",
+            "closest_approach_km": 92710.19186080078,
+            "actual_periapsis_km": 92710.19186080078,
+            "requested_periapsis_km": 80000.0,
+            "tolerance_km": 15000.0,
+            "absolute_periapsis_error_km": 12710.191860800784,
+            "requested_clock_deg": null,
+            "absolute_clock_error_deg": null,
+            "requested_energy_direction": "either",
+            "periapsis_speed_km_s": 15.68954492132053,
+            "relative_speed_km_s": 11.045116540267509,
+            "excess_speed_km_s": 11.005823682629673,
+            "estimated_impact_parameter_km": 133009.0393228118,
+            "required_impact_parameter_km": 118550.05955905768,
+            "focusing_ratio": 1.4818757444882211,
+            "impact_estimate_basis": "gate_entry_two_body",
+            "gate_entered": true,
+            "gate_exited": true,
+            "exit_state_j2000_si": [
+              -2494080790918.2866,
+              1049239891978.2819,
+              498082736253.1452,
+              -10664.017491420613,
+              -208.25238930488803,
+              2818.1025871553534
+            ],
+            "flyby_completed": true,
+            "geometry_satisfied": true,
+            "failure_reason": null
+          }
+        ]
+      }
+    }
+  ],
+  "fastest_candidate_index": 0,
+  "feasibility": "full_dynamics_feasible",
+  "departure_turn_screen": null,
+  "mission": {
+    "flybys": [
+      "Jupiter",
+      "Uranus"
+    ],
+    "horizon_years": 50.0,
+    "dt_days": 4.0,
+    "launch_window_years": 2.0,
+    "epoch": "2035-01-01T00:00:00",
+    "geometry": [
+      "Jupiter:600000:100000:either",
+      "Uranus:80000:15000:either"
+    ],
+    "objective": "escape"
+  }
+}

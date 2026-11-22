@@ -1,0 +1,295 @@
+{
+  "status": "complete",
+  "selected": {
+    "guide": {
+      "dive_perihelion_au": 0.23844907,
+      "burn_radius_au": 0.397,
+      "burn_cone_rad": 0.629835,
+      "dive_clock_rad": 0.0,
+      "burn_clock_rad": 0.16897626087369857
+    },
+    "launch_anchor": 0.04330369115684194,
+    "leg_controls": {
+      "Saturn": [
+        0.24777901687641818,
+        3.12367369160493
+      ]
+    }
+  },
+  "result": {
+    "is_success": true,
+    "mission_success": true,
+    "escape_reached": true,
+    "day": 8967.444623152638,
+    "flight_years": 24.55152532006198,
+    "r_au": 99.99999999999999,
+    "perihelion_au": 0.23844927181434042,
+    "energy_m2s2": 235245930.1066532,
+    "v_inf_km_s": 21.69082433226793,
+    "flyby_count": 2,
+    "valid_flyby_count": 2,
+    "encounters": [
+      {
+        "planet": "Jupiter",
+        "entry_time": 153988253.19785595,
+        "periapsis_time": 154381289.2354813,
+        "exit_time": 154774246.28980768,
+        "periapsis_km": 611223.1375820596,
+        "periapsis_position_m": [
+          -809362861666.0043,
+          -95627365266.79605,
+          -21364165057.287376
+        ],
+        "energy_change_km2_s2": 149.0456617027394,
+        "b_plane_clock_deg": 7.0594373908669565,
+        "turn_deg": 25.23735592621067,
+        "relative_entry_speed_km_s": 27.640830448837317,
+        "relative_v_inf_km_s": 27.22594042239761,
+        "impact_parameter_km": 763591.4159600532
+      },
+      {
+        "planet": "Saturn",
+        "entry_time": 176766490.0851172,
+        "periapsis_time": 177243827.80348322,
+        "exit_time": 177721278.05725694,
+        "periapsis_km": 191551.36170541326,
+        "periapsis_position_m": [
+          -1351827372567.1914,
+          -500323343995.2289,
+          -148457451371.10922
+        ],
+        "energy_change_km2_s2": -107.37260205214793,
+        "b_plane_clock_deg": 181.36429766196284,
+        "turn_deg": 24.186981269284455,
+        "relative_entry_speed_km_s": 27.432213474490432,
+        "relative_v_inf_km_s": 27.327513342912678,
+        "impact_parameter_km": 237114.12663577747
+      }
+    ],
+    "launch_et": 1126359438.2087288,
+    "thermal_violation": false,
+    "planet_violation": false,
+    "geometry_ok": true,
+    "failure_reason": null,
+    "flyby_diagnostics": [
+      {
+        "body": "Jupiter",
+        "closest_approach_km": 611223.1375820596,
+        "actual_periapsis_km": 611223.1375820596,
+        "requested_periapsis_km": 600000.0,
+        "tolerance_km": 100000.0,
+        "absolute_periapsis_error_km": 11223.1375820596,
+        "requested_clock_deg": null,
+        "absolute_clock_error_deg": null,
+        "requested_energy_direction": "either",
+        "periapsis_speed_km_s": 34.0036381839414,
+        "relative_speed_km_s": 27.640830448837317,
+        "excess_speed_km_s": 27.22594042239761,
+        "estimated_impact_parameter_km": 763591.4159600531,
+        "required_impact_parameter_km": 751753.378112842,
+        "focusing_ratio": 1.2529222968547367,
+        "impact_estimate_basis": "gate_entry_two_body",
+        "gate_entered": true,
+        "gate_exited": true,
+        "exit_state_j2000_si": [
+          -819737733814.5317,
+          -102681100785.66743,
+          -23551453999.331295,
+          -25345.8155991121,
+          -18080.721228745904,
+          -5650.596622477181
+        ],
+        "flyby_completed": true,
+        "geometry_satisfied": true,
+        "failure_reason": null
+      },
+      {
+        "body": "Saturn",
+        "closest_approach_km": 191551.36170541326,
+        "actual_periapsis_km": 191551.36170541326,
+        "requested_periapsis_km": 180000.0,
+        "tolerance_km": 30000.0,
+        "absolute_periapsis_error_km": 11551.361705413263,
+        "requested_clock_deg": null,
+        "absolute_clock_error_deg": null,
+        "requested_energy_direction": "either",
+        "periapsis_speed_km_s": 33.80935060512528,
+        "relative_speed_km_s": 27.432213474490432,
+        "excess_speed_km_s": 27.327513342912674,
+        "estimated_impact_parameter_km": 237114.12663577666,
+        "required_impact_parameter_km": 225143.70473644155,
+        "focusing_ratio": 1.2507983596468975,
+        "impact_estimate_basis": "gate_entry_two_body",
+        "gate_entered": true,
+        "gate_exited": true,
+        "exit_state_j2000_si": [
+          -1363635053844.1238,
+          -503606946931.15845,
+          -149117789808.2702,
+          -24338.453150114943,
+          -6798.0543412247,
+          -1375.9806511210425
+        ],
+        "flyby_completed": true,
+        "geometry_satisfied": true,
+        "failure_reason": null
+      }
+    ]
+  },
+  "candidates": [
+    {
+      "guide": {
+        "dive_perihelion_au": 0.23844907,
+        "burn_radius_au": 0.397,
+        "burn_cone_rad": 0.629835,
+        "dive_clock_rad": 0.0,
+        "burn_clock_rad": 0.16897626087369857
+      },
+      "launch_anchor": 0.04330369115684194,
+      "leg_controls": {
+        "Saturn": [
+          0.24777901687641818,
+          3.12367369160493
+        ]
+      },
+      "optimization": null,
+      "result": {
+        "is_success": true,
+        "mission_success": true,
+        "escape_reached": true,
+        "day": 8967.444623152638,
+        "flight_years": 24.55152532006198,
+        "r_au": 99.99999999999999,
+        "perihelion_au": 0.23844927181434042,
+        "energy_m2s2": 235245930.1066532,
+        "v_inf_km_s": 21.69082433226793,
+        "flyby_count": 2,
+        "valid_flyby_count": 2,
+        "encounters": [
+          {
+            "planet": "Jupiter",
+            "entry_time": 153988253.19785595,
+            "periapsis_time": 154381289.2354813,
+            "exit_time": 154774246.28980768,
+            "periapsis_km": 611223.1375820596,
+            "periapsis_position_m": [
+              -809362861666.0043,
+              -95627365266.79605,
+              -21364165057.287376
+            ],
+            "energy_change_km2_s2": 149.0456617027394,
+            "b_plane_clock_deg": 7.0594373908669565,
+            "turn_deg": 25.23735592621067,
+            "relative_entry_speed_km_s": 27.640830448837317,
+            "relative_v_inf_km_s": 27.22594042239761,
+            "impact_parameter_km": 763591.4159600532
+          },
+          {
+            "planet": "Saturn",
+            "entry_time": 176766490.0851172,
+            "periapsis_time": 177243827.80348322,
+            "exit_time": 177721278.05725694,
+            "periapsis_km": 191551.36170541326,
+            "periapsis_position_m": [
+              -1351827372567.1914,
+              -500323343995.2289,
+              -148457451371.10922
+            ],
+            "energy_change_km2_s2": -107.37260205214793,
+            "b_plane_clock_deg": 181.36429766196284,
+            "turn_deg": 24.186981269284455,
+            "relative_entry_speed_km_s": 27.432213474490432,
+            "relative_v_inf_km_s": 27.327513342912678,
+            "impact_parameter_km": 237114.12663577747
+          }
+        ],
+        "launch_et": 1126359438.2087288,
+        "thermal_violation": false,
+        "planet_violation": false,
+        "geometry_ok": true,
+        "failure_reason": null,
+        "flyby_diagnostics": [
+          {
+            "body": "Jupiter",
+            "closest_approach_km": 611223.1375820596,
+            "actual_periapsis_km": 611223.1375820596,
+            "requested_periapsis_km": 600000.0,
+            "tolerance_km": 100000.0,
+            "absolute_periapsis_error_km": 11223.1375820596,
+            "requested_clock_deg": null,
+            "absolute_clock_error_deg": null,
+            "requested_energy_direction": "either",
+            "periapsis_speed_km_s": 34.0036381839414,
+            "relative_speed_km_s": 27.640830448837317,
+            "excess_speed_km_s": 27.22594042239761,
+            "estimated_impact_parameter_km": 763591.4159600531,
+            "required_impact_parameter_km": 751753.378112842,
+            "focusing_ratio": 1.2529222968547367,
+            "impact_estimate_basis": "gate_entry_two_body",
+            "gate_entered": true,
+            "gate_exited": true,
+            "exit_state_j2000_si": [
+              -819737733814.5317,
+              -102681100785.66743,
+              -23551453999.331295,
+              -25345.8155991121,
+              -18080.721228745904,
+              -5650.596622477181
+            ],
+            "flyby_completed": true,
+            "geometry_satisfied": true,
+            "failure_reason": null
+          },
+          {
+            "body": "Saturn",
+            "closest_approach_km": 191551.36170541326,
+            "actual_periapsis_km": 191551.36170541326,
+            "requested_periapsis_km": 180000.0,
+            "tolerance_km": 30000.0,
+            "absolute_periapsis_error_km": 11551.361705413263,
+            "requested_clock_deg": null,
+            "absolute_clock_error_deg": null,
+            "requested_energy_direction": "either",
+            "periapsis_speed_km_s": 33.80935060512528,
+            "relative_speed_km_s": 27.432213474490432,
+            "excess_speed_km_s": 27.327513342912674,
+            "estimated_impact_parameter_km": 237114.12663577666,
+            "required_impact_parameter_km": 225143.70473644155,
+            "focusing_ratio": 1.2507983596468975,
+            "impact_estimate_basis": "gate_entry_two_body",
+            "gate_entered": true,
+            "gate_exited": true,
+            "exit_state_j2000_si": [
+              -1363635053844.1238,
+              -503606946931.15845,
+              -149117789808.2702,
+              -24338.453150114943,
+              -6798.0543412247,
+              -1375.9806511210425
+            ],
+            "flyby_completed": true,
+            "geometry_satisfied": true,
+            "failure_reason": null
+          }
+        ]
+      }
+    }
+  ],
+  "feasibility": "full_dynamics_feasible",
+  "departure_turn_screen": null,
+  "mission": {
+    "flybys": [
+      "Jupiter",
+      "Saturn"
+    ],
+    "horizon_years": 65.0,
+    "goal_au": 100.0,
+    "dt_days": 4.0,
+    "launch_window_years": 16.0,
+    "epoch": "2035-01-01T00:00:00",
+    "geometry": [
+      "Jupiter:600000:100000:either",
+      "Saturn:180000:30000:either"
+    ]
+  }
+}

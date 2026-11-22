@@ -1,0 +1,23 @@
+
+# Python environment
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Temporary files
+*.log
+.DS_Store
+
+# NEAT checkpoints
+neat-checkpoint-*
+
+acceleration_benchmark.json
+
+/mission_search
+/mission_run
+/archive
+
+# Local run folders
+/test_runs/
+/ppo_*/
